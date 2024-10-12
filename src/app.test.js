@@ -22,9 +22,12 @@ describe('fromEuroToDollar', () => {
         
         const { fromEuroToDollar } = require('./app.js');
     
-        const expected = "El valor a convertir debe ser un número";
-
+        
+        const expected = /El valor a convertir tipo [\w]+ no es un número valido/;
+        
         expect(() => fromEuroToDollar("s")).toThrow(expected); 
+        expect(() => fromEuroToDollar()).toThrow(expected); 
+        expect(() => fromEuroToDollar(null)).toThrow(expected); 
         
     })
 
@@ -40,13 +43,23 @@ describe('fromEuroToDollar', () => {
 
     test("The exception is type of IlegalArgumentException.class", function() {
         
-        const { fromEuroToDollar } = require('./app.js');
-    
-        const expected = "El valor a convertir debe ser un número mayor que cero";
+        const { fromEuroToDollar, IlegalArgumentException } = require('./app.js');
 
-        expect(() => fromEuroToDollar(-2)).toThrow(expected); 
+        expect(() => fromEuroToDollar(-2)).toThrow(IlegalArgumentException); 
         
     })
+
+    // test("The value to be converted should not be null or undefined", function() {
+        
+    //     const { fromEuroToDollar, IlegalArgumentException } = require('./app.js');
+
+    //     const expected = "El valor a convertir debe ser un número valido";
+
+    //     expect(() => fromEuroToDollar(null)).toThrow(expected); 
+    //     expect(() => fromEuroToDollar(undefined)).toThrow(expected); 
+    //     expect(() => fromEuroToDollar()).toThrow(expected); 
+        
+    // })
 });
 
 describe('fromDollarToYen', () => {

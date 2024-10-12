@@ -1,10 +1,17 @@
+class IlegalArgumentException extends Error{
+    constructor(message) {
+        super(message);
+    }
+}
+
+
 const fromEuroToDollar = function(valueInEuro) {
     if (typeof valueInEuro !== "number") {
-        throw new Error("El valor a convertir debe ser un número")
+        throw new IlegalArgumentException(`El valor a convertir tipo ${typeof valueInEuro} no es un número valido`)
     }
 
     if (valueInEuro < 0) {
-        throw new Error("El valor a convertir debe ser un número mayor que cero")
+        throw new IlegalArgumentException("El valor a convertir debe ser un número mayor que cero")
     }
 
     // Convertimos el valor a dólares
@@ -28,4 +35,4 @@ const fromYenToPound = function(valueInYens) {
     return valuePouns;
 }
 
-module.exports = { fromEuroToDollar, fromDollarToYen, fromYenToPound }
+module.exports = { fromEuroToDollar, fromDollarToYen, fromYenToPound, IlegalArgumentException }
