@@ -49,17 +49,7 @@ describe('fromEuroToDollar', () => {
         
     })
 
-    // test("The value to be converted should not be null or undefined", function() {
-        
-    //     const { fromEuroToDollar, IlegalArgumentException } = require('./app.js');
-
-    //     const expected = "El valor a convertir debe ser un número valido";
-
-    //     expect(() => fromEuroToDollar(null)).toThrow(expected); 
-    //     expect(() => fromEuroToDollar(undefined)).toThrow(expected); 
-    //     expect(() => fromEuroToDollar()).toThrow(expected); 
-        
-    // })
+    
 });
 
 describe('fromDollarToYen', () => {
@@ -73,6 +63,45 @@ describe('fromDollarToYen', () => {
     
         expect(yenes).toBe(expected); 
     })
+
+    test("The function Should be different to undefined or null", function() {
+        
+        const { fromDollarToYen } = require('./app.js');
+        
+        expect(fromDollarToYen).not.toBeFalsy(); 
+        
+    })
+
+    test("The function argument is a number", function() {
+        
+        const { fromDollarToYen } = require('./app.js');
+    
+        
+        const expected = /El valor a convertir tipo [\w]+ no es un número valido/;
+        
+        expect(() => fromDollarToYen("s")).toThrow(expected); 
+        expect(() => fromDollarToYen()).toThrow(expected); 
+        expect(() => fromDollarToYen(null)).toThrow(expected); 
+        
+    })
+
+    test("The function argument is a number greater than zero", function() {
+        
+        const { fromDollarToYen } = require('./app.js');
+    
+        const expected = "El valor a convertir debe ser un número mayor que cero";
+
+        expect(() => fromDollarToYen(-2)).toThrow(expected); 
+        
+    })
+
+    test("The exception is type of IlegalArgumentException.class", function() {
+        
+        const { fromDollarToYen, IlegalArgumentException } = require('./app.js');
+
+        expect(() => fromDollarToYen(-2)).toThrow(IlegalArgumentException); 
+        
+    })
 });
 
 describe('fromYenToPound', () =>{
@@ -85,6 +114,45 @@ describe('fromYenToPound', () =>{
         const expected = 1 / 0.87;
     
         expect(pounds).toBe(expected); 
+    })
+
+    test("The function Should be different to undefined or null", function() {
+        
+        const { fromYenToPound } = require('./app.js');
+        
+        expect(fromYenToPound).not.toBeFalsy(); 
+        
+    })
+
+    test("The function argument is a number", function() {
+        
+        const { fromYenToPound } = require('./app.js');
+    
+        
+        const expected = /El valor a convertir tipo [\w]+ no es un número valido/;
+        
+        expect(() => fromYenToPound("s")).toThrow(expected); 
+        expect(() => fromYenToPound()).toThrow(expected); 
+        expect(() => fromYenToPound(null)).toThrow(expected); 
+        
+    })
+
+    test("The function argument is a number greater than zero", function() {
+        
+        const { fromYenToPound } = require('./app.js');
+    
+        const expected = "El valor a convertir debe ser un número mayor que cero";
+
+        expect(() => fromYenToPound(-2)).toThrow(expected); 
+        
+    })
+
+    test("The exception is type of IlegalArgumentException.class", function() {
+        
+        const { fromYenToPound, IlegalArgumentException } = require('./app.js');
+
+        expect(() => fromYenToPound(-2)).toThrow(IlegalArgumentException); 
+        
     })
 })
 

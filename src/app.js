@@ -21,6 +21,14 @@ const fromEuroToDollar = function(valueInEuro) {
 }
 
 const fromDollarToYen = function(valueInDolar) {
+    if (typeof valueInDolar !== "number") {
+        throw new IlegalArgumentException(`El valor a convertir tipo ${typeof valueInDolar} no es un número valido`)
+    }
+
+    if (valueInDolar < 0) {
+        throw new IlegalArgumentException("El valor a convertir debe ser un número mayor que cero")
+    }
+
     // Convertimos el valor a yenes
     let valueInYenes = valueInDolar / 156.5;
     // Retornamos el valor en yenes
@@ -28,8 +36,15 @@ const fromDollarToYen = function(valueInDolar) {
 }
 
 const fromYenToPound = function(valueInYens) {
-    // Convertimos el valor a yenes
-    
+    if (typeof valueInYens !== "number") {
+        throw new IlegalArgumentException(`El valor a convertir tipo ${typeof valueInYens} no es un número valido`)
+    }
+
+    if (valueInYens < 0) {
+        throw new IlegalArgumentException("El valor a convertir debe ser un número mayor que cero")
+    }
+
+    // Convertimos el valor a yenes   
     let valuePouns = valueInYens / 0.87;
     // Retornamos el valor en yenes
     return valuePouns;
